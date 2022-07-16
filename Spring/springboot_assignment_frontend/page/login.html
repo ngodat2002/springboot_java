@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/lib/css/login.css">
+</head>
+<body>
+<div class="login-wrap">
+    <h2>Login</h2>
+
+    <div class="form">
+        <form name="login-form" method="post">
+            <input type="text" placeholder="Username" name="username" />
+            <input type="password" placeholder="Password" name="password" />
+            <button type="submit" name="login"> Sign in </button>
+            <a href="register.html"> <p> Don't have an account? Register </p></a>
+        </form>
+    </div>
+</div>
+<script src="/lib/js/login.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        handleSubmit();
+    })
+    function handleSubmit(){
+        var btnSubmit = document.forms['login-form']['login'];
+        var txtUn = document.forms['login-form']['username'];
+        var txtPs = document.forms['login-form']['password'];
+
+        if (btnSubmit){
+            btnSubmit.onclick = function (event){
+                event.preventDefault();
+                var username = txtUn.value;
+                var password = txtPs.value;
+
+                var obj = {
+                    "username": username,
+                    "password": password
+                }
+
+                var dataToSend = JSON.stringify(obj);
+                var xmlHttpRequest = new XMLHttpRequest();
+                xmlHttpRequest.onreadystatechange = function (){
+                    if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
+                        alert('login success!');
+                        window.location.href = 'product.html';
+                    }
+                }
+                xmlHttpRequest.open('POST', 'http://localhost:8066/api/v1/accounts/login');
+                xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
+                xmlHttpRequest.send(dataToSend);
+            }
+        }
+    }
+</script>
+</body>
+</html>

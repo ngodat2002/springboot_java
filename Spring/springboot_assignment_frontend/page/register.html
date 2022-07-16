@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="/lib/css/login.css">
+</head>
+<body>
+<div class="login-wrap">
+    <h2>Register</h2>
+
+    <div class="form">
+        <form name="login-form" method="post">
+            <input type="text" placeholder="Username" name="username" />
+            <input type="password" placeholder="Password" name="password" />
+            <input type="password" placeholder="Repeat Password" name="rePass" />
+            <input type="text" placeholder="firstName" name="firstName" />
+            <input type="text" placeholder="lastName" name="lastName" />
+            <input type="email" placeholder="Email" name="email" />
+            <input type="text" placeholder="phone" name="phone" />
+            <input type="text" placeholder="address" name="address" />
+            <button type="submit" name="login"> Sign up </button>
+            <a href="login.html"> <p> Already have an account? Login </p></a>
+        </form>
+    </div>
+</div>
+<script src="/lib/js/login.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        handleSubmit();
+    })
+    function handleSubmit(){
+        var btnSubmit = document.forms['login-form']['login'];
+        var txtUn = document.forms['login-form']['username'];
+        var txtPs = document.forms['login-form']['password'];
+        var txtRps = document.forms['login-form']['rePass'];
+        var txtFn = document.forms['login-form']['firstName'];
+        var txtLn = document.forms['login-form']['lastName'];
+        var txtEmail = document.forms['login-form']['email'];
+        var txtPhone = document.forms['login-form']['phone'];
+        var txtAddress = document.forms['login-form']['address'];
+
+        if (btnSubmit){
+            btnSubmit.onclick = function (event){
+                event.preventDefault();
+                var username = txtUn.value;
+                var password = txtPs.value;
+                var repass = txtRps.value;
+                var firstName = txtFn.value;
+                var lastName = txtLn.value;
+                var email = txtEmail.value;
+                var phone = txtPhone.value;
+                var address = txtAddress.value;
+
+
+
+                var obj = {
+                    "username": username,
+                    "password": password,
+                    "rePass": repass,
+                    "firstName": firstName,
+                    "lastName": lastName,
+                    "email": email,
+                    "phone": phone,
+                    "address": address
+                }
+
+                var dataToSend = JSON.stringify(obj);
+                var xmlHttpRequest = new XMLHttpRequest();
+                xmlHttpRequest.onreadystatechange = function (){
+                    if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
+                        alert('register success!');
+                        window.location.href = 'login.html';
+                    }
+                }
+                xmlHttpRequest.open('POST', 'http://localhost:8066/api/v1/accounts/register');
+                xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
+                xmlHttpRequest.send(dataToSend);
+            }
+        }
+    }
+</script>
+</body>
+</html>
