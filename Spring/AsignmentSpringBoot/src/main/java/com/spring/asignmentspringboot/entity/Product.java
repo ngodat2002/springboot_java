@@ -32,19 +32,4 @@ public class Product extends BaseEntity {
         this.setCreatedAt(LocalDateTime.now());
         this.setUpdatedAt(LocalDateTime.now());
     }
-//    @Basic
-//    private int status;
-//    @Transient
-//    private ProductStatus productStatus;
-//
-//    @PostLoad // khi load
-//    void fillTransient() {
-//        this.productStatus = ProductStatus.of(status); // chuyển dữ liệu dạng số ở trong database về kiểu enum
-//    }
-//
-//    @PrePersist // trước khi lưu
-//    void fillPersistent() {
-//        // đưa giá trị của product status vào trường status.
-//        this.status = this.productStatus.getValue();
-//    }
 }

@@ -31,6 +31,7 @@ public class ShoppingCart {
     private String shipAddress;
     private String shipPhone;
     private String shipNote;
+    private Boolean isShoppingCart;
     @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL)
     private Set<CartItem> items;
 

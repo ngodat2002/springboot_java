@@ -44,12 +44,7 @@ public class OrderService {
             specification = specification.and(new OrderSpecification(new SearchCriteria("id", LIKE,searchBody.getOrderId())));
         }
         if (searchBody.getStart() != null && searchBody.getStart().length() > 0){
-//            log.info("check start: " + orderSearchBody.getStart() );
-//            log.info("Check Start begin" + searchBody.getStart());
-
             LocalDateTime date = ConvertDateHelper.convertStringToLocalDateTime(searchBody.getStart());
-//            log.info("Check Start" + date);
-//            log.info("check start convert date: " + date );
             specification = specification.and(new OrderSpecification(new SearchCriteria("createdAt", GREATER_THAN_OR_EQUALS,date)));
         }
         if (searchBody.getEnd() != null && searchBody.getEnd().length() > 0){
@@ -74,32 +69,4 @@ public class OrderService {
         return responses;
     }
 
-//    public Page<Order> findAll(int page, int limit,
-//                               Specification<Order> orderSpecification) {
-//        return orderRepository.findAll(
-//                orderSpecification, PageRequest.of(page - 1, limit));
-//    }
-//
-//    public Page<Order> findAll(FilterParameter param) {
-//        Specification<Order> specification = Specification.where(null);
-//        if (param.getKeyword() != null && param.getKeyword().length() > 0) {
-//            SearchCriteria searchCriteria
-//                    = new SearchCriteria("keyword", SearchCriteriaOperator.JOIN, param.getKeyword());
-//            OrderSpecification filter = new OrderSpecification(searchCriteria);
-//            specification = specification.and(filter);
-//        }
-//        if (param.getStatus() != 0) {
-//            SearchCriteria searchCriteria
-//                    = new SearchCriteria("status", SearchCriteriaOperator.EQUALS, param.getStatus());
-//            OrderSpecification filter = new OrderSpecification(searchCriteria);
-//            specification = specification.and(filter);
-//        }
-//        if (param.getUserId() != null) {
-//            SearchCriteria searchCriteria
-//                    = new SearchCriteria("userId", SearchCriteriaOperator.EQUALS, param.getUserId());
-//            OrderSpecification filter = new OrderSpecification(searchCriteria);
-//            specification = specification.and(filter);
-//        }
-//        return orderRepository.findAll(
-//                specification, PageRequest.of(param.getPage() - 1, param.getLimit()));
     }

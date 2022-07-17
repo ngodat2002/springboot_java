@@ -45,37 +45,4 @@ public class OrderApi {
 
         return ResponseEntity.ok(orderService.findAll(searchBody));
     }
-
-//    @RequestMapping(method = RequestMethod.GET, path = "orders")
-//    public ResponseEntity<?> findAll(
-//            @RequestParam(name = "page", defaultValue = "1") int page,
-//            @RequestParam(name = "limit", defaultValue = "10") int limit,
-//            @RequestParam(defaultValue = "") String keyword,
-//            @RequestParam(defaultValue = "") String userId,
-//            @RequestParam(defaultValue = "2") int status) {
-//
-//        Specification<Order> specification = Specification.where(null);
-//
-//        if (status != 0) {
-//            SearchCriteria searchCriteria
-//                    = new SearchCriteria("status", SearchCriteriaOperator.EQUALS, status);
-//            OrderSpecification filter = new OrderSpecification(searchCriteria);
-//            specification = specification.and(filter);
-//        }
-//        if (userId != null) {
-//            SearchCriteria searchCriteria
-//                    = new SearchCriteria("fullName", SearchCriteriaOperator.JOIN_USERNAME, userId);
-//            OrderSpecification filter = new OrderSpecification(searchCriteria);
-//            specification = specification.and(filter);
-//        }
-//        Page<Order> result = this.orderService.findAll(page, limit, specification);
-//        return ResponseEntity.ok().body(result);
-//    }
-//
-//    @RequestMapping(method = RequestMethod.POST, path = "orders")
-//    public ResponseEntity<?> findAllByOneObject(
-//            @RequestBody FilterParameter param) {
-//        Page<Order> result = this.orderService.findAll(param);
-//        return ResponseEntity.ok().body(result);
-//    }
 }
